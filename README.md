@@ -4,7 +4,7 @@ We all know ini-files and how great they are at holding directives for applicati
 
 Powershell cmdlets and functions are equally great at their flexibility to pass them parameters to influence their functionality.
 However, stretching that flexibility comes at a price: the string of parameter names and values become longer as the number of parameters increases.
-If entered by hand, the number of typo's or mistakes increases too and repeated execution takes too much time to type.
+If entered by hand, the number of typo's or mistakes increases too and for repeated execution, it  takes too much time to type.
 
 There are several solutions to handle these problems, such as complete execution strings held in cmd-files but the easiest solution is keeping all parameters in an ini-file and passing its name to the program as an override for locally defined parameters or as the only parameter input.
 
