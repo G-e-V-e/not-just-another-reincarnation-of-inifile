@@ -3,7 +3,7 @@
     Get the content of an INI file. Return a truly multilevel hashtable (0 to any number of defined section levels).
 .Description
     Get the content of an INI file and return it as a truly multilevel hashtable (0..n section levels).
-	The format of the section header is extended with a hyphen to separate hashtable levels: [level 1:level 2:level 3:...]
+	The format of the section header is extended with a punctuation colon to separate hashtable levels: [level1:level2:level3] etc.
 	Comments are suppressed by default because they have no operational meaning. Specify switch -Comment if you want them.
 .Inputs
     System.String
