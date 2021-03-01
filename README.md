@@ -16,11 +16,11 @@ Okay, the above is all basic.
 This reincarnation of the ini-file implementation in PowerShell adds a couple of features.
 
 * It addresses the fact that an ini-files is clear text and so can have its content revealed by any text editor. 2 different file extensions provide some protection by hiding the content, so it takes some more time to unveil what is inside.
-* True multilevel hashtable support: the usual "nosection" section is dropped and the section header is extended with a puntuation colon to separate hashtable levels: [level 1:level 2:level 3] etc.
+* True multilevel hashtable support: the usual "nosection" section is dropped and the section header is extended with a punctuation colon to separate hashtable levels: [level 1:level 2:level 3] etc.
 * Comments are left out while reading the content of an ini-file because these comments are only useful while editing the file, they are not required during parameter interpretation.
 
 These are the PowerShell cmdlets supplied:
 
-1. Set-IniFile: reads, edits and optionally copies an existing ini-file. It's supposed to be used manually so it doesn't support pipeline input. You get the option to save a clone if the target destination happens to be R/O. Source and target files containing equivalent content have the same file timestamps.
+1. Set-IniFile: reads, edits and optionally copies an existing ini-file. It's supposed to be used manually so it doesn't accept pipeline input. You get the option to save a clone if the target destination happens to be R/O. Source and target files containing equivalent content have the same file timestamps.
 
 2. Get-IniFile: reads an existing ini-file and outputs a hashtable holding sections and sections.keys. Comments are left out by default but reappear using the -Comments switch. 
