@@ -1,8 +1,10 @@
 <#
 .Synopsis
-    Get the content of an INI file.
+    Get the content of an INI file. Return a truly multilevel hashtable (0 to any number of defined section levels).
 .Description
-    Get the content of an INI file and return it as a hashtable. Comments are suppressed by default because they have no operational meaning.
+    Get the content of an INI file and return it as a truly multilevel hashtable (0..n section levels).
+	The format of the section header is extended with a hyphen to separate hashtable levels: [level 1:level 2:level 3:...]
+	Comments are suppressed by default because they have no operational meaning. Specify switch -Comment if you want them.
 .Inputs
     System.String
 .Outputs
@@ -61,15 +63,14 @@ Begin	{
 Process	{
 		Write-Verbose "($($PSCmdlet.MyInvocation.MyCommand.Name)): Processing file <$Path>"
 		$Lines = (&Data $Path (Get-Content $Path -Raw)) -split "`r`n|`r|`n"
-		$Ini = @{}
-		$Cnt = 0
+		$Ini = @{};$Ref = $Ini;$Cnt = 0
 		switch	-regex ($Lines)
-				{"^\[(.+)\]$"
-				 {$Sec = $Matches[1];$Ini[$Sec] = @{};continue}																													# Section
-				 "^(;.*)$"
-				 {if ($Comment) {$Nam,$Val = "Comment$((++$Cnt).ToString())",$Matches[1];if (!$Sec) {$Sec = 'NoSection';$Ini[$Sec] = @{}};$Ini[$Sec][$Nam] = $Val};continue}	# Comment
-				 "(.+?)\s*=\s*(.*)"
-				 {$Nam,$Val = $Matches[1..2];if (!$Sec) {$Sec = 'NoSection';$Ini[$Sec] = @{}};if ($Trim) {$Ini[$Sec][$Nam] = $Val.Trim($Trim)} else {$Ini[$Sec][$Nam] = $Val}}	# Key
+				{"^\[(.+[:.+]*)\]$"	# Section(s)
+				 {$Ref = $Ini;foreach ($Sec in $Matches[1].Split(':')) {if (!$Ref.ContainsKey($Sec)) {$Ref[$Sec] = @{}};$Ref = $Ref[$Sec]};continue}
+				 "^(;.*)$"			# Comment
+				 {if ($Comment) {$Nam,$Val = "Comment$((++$Cnt).ToString())",$Matches[1];$Ref[$Nam] = $Val};continue}
+				 "(.+?)\s*=\s*(.*)"	# Key
+				 {$Nam,$Val = $Matches[1..2];if ($Trim) {$Ref[$Nam] = $Val.Trim($Trim)} else {$Ref[$Nam] = $Val}}
 				}
 		Write-Verbose "($($MyInvocation.MyCommand.Name)): Finished Processing file <$Path>"
 		$Ini
