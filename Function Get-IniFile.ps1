@@ -46,7 +46,7 @@ Param	(
 		)
 Begin	{
 		Write-Verbose "($($PSCmdlet.MyInvocation.MyCommand.Name)): Function started"
-		Function Data ([String]$path,[string]$string,[String]$action)
+		Function Data ([String]$path,[string]$string)
 		{switch ([System.IO.Path]::GetExtension($path))
 				{"$('.a')rg"	{$using = (-join [regex]::Matches(("$Env:UserDomain\$Env:UserName",(Get-Acl $path -EA ignore).Owner)[(Test-Path $path)],'.','RightToLeft')) -split('\\|a|e|i|o|u|y') -join 'O4v(a}9I#'}
 				 ".ge$('ve')"	{$using = ('W7^Jm{1}oL4v{4}%AQrGA@z{3}eGZ6{0}&I5zp{2}vb' -f '_(q1)','TchV','BmQTl','3^wC&!q','Y9qO!')}
