@@ -1,4 +1,4 @@
-# not-just-another-reincarnation-of-inifile
+# Not Just Another Reincarnation Of Inifile
 
 We all know ini-files and how great they are at holding directives for application execution.
 
