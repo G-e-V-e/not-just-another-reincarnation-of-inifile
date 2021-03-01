@@ -15,7 +15,7 @@ Okay, the above is all basic.
 
 This reincarnation of the ini-file implementation in PowerShell adds a couple of features.
 
-* It addresses the fact that an ini-files is clear text and so can have its content revealed by any text editor. 2 different file extensions provide some protection by hiding the content, so it takes some more time to unveil what is inside.
+* It addresses the fact that an ini-file is clear text and so can have its content revealed by any text editor. 2 different file extensions provide some protection by hiding the content, so it takes more time to unveil what is inside.
 * True multilevel hashtable support: the usual "nosection" section is dropped and the section header is extended with a punctuation colon to separate hashtable levels: [level 1:level 2:level 3] etc.
 * Comments are left out while reading the content of an ini-file because these comments are only useful while editing the file, they are not required during parameter interpretation.
 
