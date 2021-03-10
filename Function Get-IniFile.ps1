@@ -1,10 +1,10 @@
 <#
 .Synopsis
-    Get the content of an INI file. Return a truly multilevel hashtable (0 to any number of defined section levels).
+    Get the content of an INI file. Return a multilevel hashtable (0 to any number of defined section levels).
 .Description
-    Get the content of an INI file and return it as a truly multilevel hashtable (0..n section levels).
+    Get the content of an INI file and return it as a multilevel hashtable (0..n section levels).
 	The format of the section header is extended with a punctuation colon to separate hashtable levels: [level1:level2:level3] etc.
-	Comments are suppressed by default because they have no operational meaning. Specify switch -Comment if you want them.
+	Comments are suppressed by default because they have no operational effect. Specify switch -Comment if you want them.
 .Inputs
     System.String
 .Outputs
@@ -14,25 +14,25 @@
 .Parameter Comment
     Includes comments (line starting with comma point ';')
 .Example
-	Save the content of file "c:\myIniFile.ini" in a hashtable called $FileContent
-	$FileContent = Get-IniFile "C:\myIniFile.ini"
+	Save the content of file "C:\ProjectX\myIniFile.ini" in a hashtable called $FileContent
+	$FileContent = Get-IniFile "C:\ProjectX\myIniFile.ini"
 .Example
 	Get the ini content of the file passed through the pipe into a hashtable called $FileContent
-	$IniFilePath | $FileContent = Get-IniFile
+	$FileContent = $IniFilePath | Get-IniFile
 .Example
-	Return the key "Key" of the section "Section" from file "C:\settings.arg"
-	$FileContent = Get-IniFile "c:\settings.arg" 
+	Return the key "Key" of the section "Section" from file "C:\ProjectX\settings.arg"
+	$FileContent = Get-IniFile "C:\ProjectX\settings.arg" 
 	$FileContent["Section"]["Key"] or $FileContent.section.key
 .Example
-	Return key/value pairs of section "Section" (if it existsts) from file "C:\settings.arg"
-	$SectionContent = (Get-IniFile "c:\settings.arg")["Section"]
+	Return key/value pairs of section "Section" (if it existsts) from file "C:\ProjectX\settings.arg"
+	$SectionContent = (Get-IniFile "C:\ProjectX\settings.arg")["Section"]
 	or
-	$SectionContent = (Get-IniFile "c:\settings.arg").Section
+	$SectionContent = (Get-IniFile "C:\ProjectX\settings.arg").Section
 .Example
-	Return value of key "Section.$Key" (if it existsts) from file "C:\settings.geve"
-	$KeyValue		= (Get-IniFile "c:\settings.geve")["Section"]["$Key"]
+	Return value of key "Section.$Key" (if it existsts) from file "C:\ProjectX\settings.geve"
+	$KeyValue		= (Get-IniFile "C:\ProjectX\settings.geve")["Section"]["$Key"]
 	or
-	$KeyValue		= (Get-IniFile "c:\settings.geve").Section.$Key
+	$KeyValue		= (Get-IniFile "C:\ProjectX\settings.geve").Section.$Key
 .Notes
 	Author:	geve.one2one@gmail.com  
 #>
