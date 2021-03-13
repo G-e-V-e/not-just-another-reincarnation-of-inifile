@@ -23,4 +23,4 @@ These are the PowerShell cmdlets supplied:
 
 1. Set-IniFile: reads, edits and optionally copies an existing ini-file. It's supposed to be used manually so it doesn't accept pipeline input. You get the option to save a clone if the target destination happens to be R/O. Source and target files containing equivalent content have the same file timestamps.
 
-2. Get-IniFile: reads an existing ini-file and outputs a hashtable holding sections and sections.keys. Comments are left out by default but reappear using the -Comments switch. 
+2. Get-IniFile: reads an existing ini-file and outputs a hashtable holding a mixture of any levels of sections (0 to as many as specified), keys and their values. Comments are left out by default but reappear using the -Comments switch. 
